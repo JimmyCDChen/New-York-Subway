@@ -1,17 +1,16 @@
-import express from 'express';
-import trainLineRoute from './TrainLineRoute';
+import { Router } from 'express';
+import Route from './routeAbstract';
+import TrainLineRoute from './TrainLineRoutes';
 
-const router = express.Router();
+const app = Router();
 
-const allRoutes = [
-  {
-    path: '/train-line',
-    route: trainLineRoute,
-  },
+const allRoutes: Array<Route> = [
+  new TrainLineRoute(),
 ];
 
-allRoutes.forEach((route) => {
-  router.use(route.path, route.route);
-});
+// load router
+for (const route of allRoutes) {
+  app.use(route.getPrefix(), route.getRouter());
+}
 
-export default router;
+export default app;

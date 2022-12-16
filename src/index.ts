@@ -18,7 +18,7 @@ const PORT = Config.port || 4000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api/v1', routes);
+app.use('/', routes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req: Request, res: Response, next: NextFunction) => next(new NotFoundError(req.path)));

@@ -7,9 +7,8 @@ export const swaggerDocument = {
     description: 'your description here',
     termsOfService: '',
     contact: {
-      name: 'Mohammad Faisal',
-      email: 'mohammadfaisal@gmail.com',
-      url: 'https://www.mohammadfaisal.dev/',
+      name: 'Jimmy Chen',
+      email: 'chundachen1230@gmail.com',
     },
     license: {
       name: 'Apache 2.0',
@@ -18,7 +17,7 @@ export const swaggerDocument = {
   },
   tags: [
     {
-      name: 'Users',
+      name: 'TrainLines',
     },
   ],
   paths: {

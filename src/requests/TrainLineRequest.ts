@@ -1,10 +1,10 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
-export class SignInRequest {
+export class TrainLineRequest {
   @IsNotEmpty()
   @IsEmail()
-  email: string;
+  name: string;
 
   @IsNotEmpty()
-  password: string;
+  station: Array<string>;
 }

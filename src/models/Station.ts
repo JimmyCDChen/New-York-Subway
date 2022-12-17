@@ -8,7 +8,7 @@ export class Station extends Model {
   @Column({ type: DataType.INTEGER, autoIncrement: true, primaryKey: true, unique: true, field: 'Id' })
   id!: number;
 
-  @Column({ type: DataType.STRING(50), allowNull: false, unique: true, field: 'name'})
+  @Column({ type: DataType.STRING(50), allowNull: false, field: 'name'})
   name!: string;
   
   @Column({ type: DataType.ARRAY(DataType.JSON), allowNull: false, field: 'nextStation'})

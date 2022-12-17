@@ -1,4 +1,3 @@
-import { ApplicationError } from '../utils/ApiError';
 import { Service } from 'typedi';
 import TrainLineRepository from '../repositories/TrainLineRepository';
 import { LoggerClient } from './LoggerClient';

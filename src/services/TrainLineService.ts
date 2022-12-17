@@ -2,30 +2,38 @@ import { ApplicationError } from '../utils/ApiError';
 import { Service } from 'typedi';
 import TrainLineRepository from '../repositories/TrainLineRepository';
 import { LoggerClient } from './LoggerClient';
-import { TrainLine } from '../models/TrainLine';
+import StationService from './StationService';
 
 @Service()
-export default class UserService {
-  constructor(public trainLineRepository: TrainLineRepository, public logger: LoggerClient) {}
+export default class TrainLineService {
+  constructor(public trainLineRepository: TrainLineRepository, public stationService: StationService, public logger: LoggerClient) {}
 
-  createTrain = async (name: string) => {
-    const result = this.trainLineRepository.createTrainLine(name);
+  createTrain = async (trainName: string, stations: Array<string>) => {
+    const result = this.trainLineRepository.createTrainLine(trainName, stations);
+
+    // For each provided station, perform upsert
+    stations.forEach((station: string) => {
+        const nextStations = this.getAdjacentStations(station, stations);
+        this.stationService.createStation(station, trainName, nextStations);
+      }
+    );
+
     return result;
   };
-
-  // signIn = async (email: string, password: string) => {
-  //   this.logger.info(`Email of the registered trainLine is ${email}`);
-  //   const trainLineWithEmail: TrainLine | null = await this.trainLineRepository.findByEmail(email);
-  //   if (!trainLineWithEmail) {
-  //     throw new ApplicationError('No TrainLine found with this email');
-  //   }
-  //   if (trainLineWithEmail.password.toString() !== password) {
-  //     throw new ApplicationError('Password did not match');
-  //   }
-  //   return 'Successfully Signed In';
-  // };
 
   getAllTrainLines = async () => {
     return await this.trainLineRepository.getAllTrainLines();
   };
+
+  private getAdjacentStations = (name: string, stations: Array<string>) => {
+    const stationIndex = stations.indexOf(name);
+    
+    if (stationIndex === 0) {
+      return [stations[1]];
+    } else if (stationIndex === stations.length - 1) {
+      return [stations[stationIndex - 1]];
+    } else {
+      return [stations[stationIndex - 1], stations[stationIndex + 1]];
+    }
+  }
 }

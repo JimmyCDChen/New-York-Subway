@@ -9,8 +9,8 @@ export default class TrainLineController {
   constructor(public trainLineService: TrainLineService) {}
 
   createTrainLines = asyncWrapper(async (req: Request) => {
-    const { name, station } = req.body;
-    const response = await this.trainLineService.createTrain(name);
+    const { name, stations } = req.body;
+    const response = await this.trainLineService.createTrain(name, stations);
     return new SuccessResponse(response);
   });
 

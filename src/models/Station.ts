@@ -2,15 +2,20 @@ import { Table, Model, Column, DataType } from 'sequelize-typescript';
 
 @Table({
   timestamps: false,
-  tableName: 'train-lines',
+  tableName: 'stations',
 })
-export class TrainLine extends Model {
+export class Station extends Model {
   @Column({ type: DataType.INTEGER, autoIncrement: true, primaryKey: true, unique: true, field: 'Id' })
   id!: number;
 
   @Column({ type: DataType.STRING(50), allowNull: false, unique: true, field: 'name'})
   name!: string;
+  
+  @Column({ type: DataType.ARRAY(DataType.JSON), allowNull: false, field: 'nextStation'})
+  nextStation!: Array<NextTrainStation>;
+}
 
-  @Column({ type: DataType.ARRAY(DataType.STRING), allowNull: false, field: 'stations'})
-  stations!: Array<string>;
+export interface NextTrainStation {
+  train: string;
+  station: string;
 }

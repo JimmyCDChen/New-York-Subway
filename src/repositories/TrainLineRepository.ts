@@ -2,8 +2,8 @@ import { Service } from 'typedi';
 import { TrainLine } from '../models/TrainLine';
 @Service()
 export default class TrainLineRepository {
-  createTrainLine = async (name: string): Promise<TrainLine> => {
-    const trainLine = TrainLine.build({ name });
+  createTrainLine = async (name: string, stations: Array<string>): Promise<TrainLine> => {
+    const trainLine = TrainLine.build({ name, stations });
     return await trainLine.save();
   };
 

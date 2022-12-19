@@ -1,20 +1,19 @@
-import { Service } from 'typedi';
+import Container, { Service } from 'typedi';
 import StationRepository from '../repositories/StationRepository';
-import { LoggerClient } from './LoggerClient';
 import { NextTrainStation } from '../models/Station';
 
 @Service()
 export default class StationService {
-  constructor(public stationRepository: StationRepository, public logger: LoggerClient) {}
+  private stationRepository = Container.get(StationRepository);
 
-  createStation = async (name: string, train: string, nextStations: Array<string>) => {
-    const nextStops: Array<NextTrainStation> = nextStations.map(s => ({train, station: s}))
+  createStation(name: string, train: string, nextStations: Array<string>) {
+    const nextStops: Array<NextTrainStation> = nextStations.map((s) => ({ train, station: s }));
 
     // For each provided station, perform upsert
     return this.stationRepository.upsertStationWithName(name, nextStops);
   };
 
-  getAllStations = async () => {
-    return await this.stationRepository.getAllStations();
+  getAllStations() {
+    return this.stationRepository.getAllStations();
   };
 }

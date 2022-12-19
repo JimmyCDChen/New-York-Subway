@@ -8,9 +8,9 @@ export class TrainLine extends Model {
   @Column({ type: DataType.INTEGER, autoIncrement: true, primaryKey: true, unique: true, field: 'Id' })
   id!: number;
 
-  @Column({ type: DataType.STRING(50), allowNull: false, unique: true, field: 'name'})
+  @Column({ type: DataType.STRING(50), allowNull: false, unique: true, field: 'name' })
   name!: string;
 
-  @Column({ type: DataType.ARRAY(DataType.STRING), allowNull: false, field: 'stations'})
+  @Column({ type: DataType.ARRAY(DataType.STRING), allowNull: false, field: 'stations' })
   stations!: Array<string>;
 }

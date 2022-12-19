@@ -6,11 +6,7 @@ import TrainLineRoute from './TrainLineRoutes';
 
 const app = Router();
 
-const allRoutes: Array<Route> = [
-  new RouteRoute(),
-  new StationRoute(),
-  new TrainLineRoute(),
-];
+const allRoutes: Array<Route> = [new RouteRoute(), new StationRoute(), new TrainLineRoute()];
 
 // load router
 for (const route of allRoutes) {

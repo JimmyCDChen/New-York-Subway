@@ -14,10 +14,10 @@ export default class RouteController {
     const destination = req.query.destination as string;
 
     if (origin === undefined) {
-      throw new BadRequestError("origin should not be empty!", []);
+      throw new BadRequestError('origin should not be empty!', []);
     } else if (destination === undefined) {
-      throw new BadRequestError("destination should not be empty!", []);
-    } 
+      throw new BadRequestError('destination should not be empty!', []);
+    }
 
     const response = await this.routeService.getRoute(origin, destination);
     return new SuccessResponse(response);

@@ -2,7 +2,7 @@ import { Container } from 'typedi';
 import StationController from '../controllers/StationController';
 import Route from './routeAbstract';
 
-class StationRoute extends Route {
+class StationRoutes extends Route {
   private stationController = Container.get(StationController);
 
   constructor() {
@@ -16,4 +16,4 @@ class StationRoute extends Route {
   }
 }
 
-export default StationRoute;
+export default StationRoutes;

@@ -4,7 +4,7 @@ import TrainLineController from '../controllers/TrainLineController';
 import { TrainLineRequest } from '../requests/TrainLineRequest';
 import Route from './routeAbstract';
 
-class TrainLineRoute extends Route {
+class TrainLineRoutes extends Route {
   private trainLineController = Container.get(TrainLineController);
 
   constructor() {
@@ -19,4 +19,4 @@ class TrainLineRoute extends Route {
   }
 }
 
-export default TrainLineRoute;
+export default TrainLineRoutes;

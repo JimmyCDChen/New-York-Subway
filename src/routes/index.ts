@@ -1,12 +1,13 @@
 import { Router } from 'express';
+import CardRoutes from './CardRoutes';
 import Route from './routeAbstract';
-import RouteRoute from './RouteRoutes';
-import StationRoute from './StationRoutes';
-import TrainLineRoute from './TrainLineRoutes';
+import RouteRoutes from './RouteRoutes';
+import StationRoutes from './StationRoutes';
+import TrainLineRoutes from './TrainLineRoutes';
 
 const app = Router();
 
-const allRoutes: Array<Route> = [new RouteRoute(), new StationRoute(), new TrainLineRoute()];
+const allRoutes: Array<Route> = [new CardRoutes(), new RouteRoutes(), new StationRoutes(), new TrainLineRoutes()];
 
 // load router
 for (const route of allRoutes) {

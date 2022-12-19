@@ -2,7 +2,7 @@ import { Container } from 'typedi';
 import RouteController from '../controllers/RouteController';
 import Route from './routeAbstract';
 
-class RouteRoute extends Route {
+class RouteRoutes extends Route {
   private routeController = Container.get(RouteController);
 
   constructor() {
@@ -16,4 +16,4 @@ class RouteRoute extends Route {
   }
 }
 
-export default RouteRoute;
+export default RouteRoutes;

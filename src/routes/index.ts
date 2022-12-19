@@ -1,17 +1,16 @@
-import express from 'express';
-import authRoute from './AuthRoute';
+import { Router } from 'express';
+import Route from './routeAbstract';
+import RouteRoute from './RouteRoutes';
+import StationRoute from './StationRoutes';
+import TrainLineRoute from './TrainLineRoutes';
 
-const router = express.Router();
+const app = Router();
 
-const allRoutes = [
-  {
-    path: '/auth',
-    route: authRoute,
-  },
-];
+const allRoutes: Array<Route> = [new RouteRoute(), new StationRoute(), new TrainLineRoute()];
 
-allRoutes.forEach((route) => {
-  router.use(route.path, route.route);
-});
+// load router
+for (const route of allRoutes) {
+  app.use(route.getPrefix(), route.getRouter());
+}
 
-export default router;
+export default app;

@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "b80191c8-6a8e-4cbf-b2d3-fdfba65b86dd",
+		"name": "TrainLine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8475307"
+	},
+	"item": [
+		{
+			"name": "POST Requests",
+			"item": [
+				{
+					"name": "Post Train",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"stations\": [\"Canal\", \"Houston\", \"Christopher\", \"14th\"],\n\n\t\"name\": \"2\",\n\n    \"fare\": 3.5\n\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/train-line",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"train-line"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Card",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"number\": \"12\",\n\n\t\"amount\": 10.0\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/card",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Station Enter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"card_number\": \"12\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/station/Spring/enter",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"station",
+								"Spring",
+								"enter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Station Exit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"card_number\": \"12\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/station/Spring/exit",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"station",
+								"Spring",
+								"exit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET Requesets",
+			"item": [
+				{
+					"name": "Get Route",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/route?origin=Houston&destination=23rd",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"route"
+							],
+							"query": [
+								{
+									"key": "origin",
+									"value": "Houston"
+								},
+								{
+									"key": "destination",
+									"value": "23rd"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/station",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"station"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Trains",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/train-line",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"train-line"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

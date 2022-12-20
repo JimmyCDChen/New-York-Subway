@@ -4,9 +4,6 @@ import morgan, { StreamOptions } from 'morgan';
 import { Service } from 'typedi';
 const { combine, timestamp, json } = format;
 
-/**
- * More info: https://www.mohammadfaisal.dev/blog/nodejs-logging-for-production
- */
 @Service()
 export class LoggerClient {
   private logger: Logger;
@@ -26,14 +23,6 @@ export class LoggerClient {
         this.getErrorLoggerTransport(),
       ],
     });
-
-    if (process.env.NODE_ENV !== 'production') {
-      this.logger.add(
-        new transports.Console({
-          format: format.combine(format.colorize(), format.simple()),
-        }),
-      );
-    }
   }
 
   info = (message: string) => {

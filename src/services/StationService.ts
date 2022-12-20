@@ -21,7 +21,7 @@ export default class StationService {
 
     // For each provided station, perform upsert
     return this.stationRepository.upsertStationWithName(name, nextStops);
-  };
+  }
 
   async enterStation(station: string, card: string) {
     const loadCard = await this.cardService.getCardById(card);
@@ -30,15 +30,15 @@ export default class StationService {
     }
     const loadStation = await this.stationRepository.findByName(station);
     if (!loadStation) {
-      return new BadRequestError(`Station ${card} not found.`, [])
+      return new BadRequestError(`Station ${station} not found.`, [])
     }
 
     const loadTrain = await this.trainLineRepository.findByName(loadStation.nextStation[0].train);
     // Check for negative card balance
-    if (loadCard.amount <= loadTrain!!.fare) {
+    if (loadCard.amount <= loadTrain!.fare) {
       throw new BadRequestError(`Insufficient fund.`, [])
     }
-    const remainingBalance = loadCard.amount - loadTrain!!.fare;
+    const remainingBalance = loadCard.amount - loadTrain!.fare;
 
     // record ride, update card balance
     // try to be atomic 
@@ -51,7 +51,7 @@ export default class StationService {
     }
 
     return { amount: remainingBalance }
-  };
+  }
 
   async exitStation(station: string, card: string) {
     const loadCard = await this.cardService.getCardById(card);
@@ -60,12 +60,7 @@ export default class StationService {
     }
     const loadStation = await this.stationRepository.findByName(station);
     if (!loadStation) {
-      return new BadRequestError(`Station ${card} not found.`, [])
-    }
-
-    const lastRide = await this.rideRepository.findLastRide(card, Action.ENTER);
-    if (!lastRide) {
-      throw new BadRequestError("Must have ", [])
+      return new BadRequestError(`Station ${station} not found.`, [])
     }
 
     try {
@@ -76,11 +71,11 @@ export default class StationService {
     }
 
     return { amount: loadCard.amount }
-  };
+  }
 
   getAllStations() {
     return this.stationRepository.getAllStations();
-  };
+  }
 
   getStationById(id: number) {
     return this.stationRepository.findById(id);

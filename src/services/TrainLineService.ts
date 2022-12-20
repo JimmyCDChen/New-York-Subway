@@ -20,11 +20,11 @@ export default class TrainLineService {
     });
 
     return result;
-  };
+  }
 
   getAllTrainLines(): Promise<TrainLine[]> {
     return this.trainLineRepository.getAllTrainLines();
-  };
+  }
 
   getTrainByName(name: string): Promise<TrainLine | null> {
     return this.trainLineRepository.findByName(name);

@@ -1,12 +1,12 @@
 import StationService from '../services/StationService';
 import { asyncWrapper } from '../utils/asyncWrapper';
 import { SuccessResponse } from '../utils/SuccessResponse';
-import { Service } from 'typedi';
+import Container, { Service } from 'typedi';
 import { Request } from 'express';
 
 @Service()
 export default class StationController {
-  constructor(public stationService: StationService) { }
+  private stationService = Container.get(StationService);
 
   getAllStations = asyncWrapper(async () => {
     const response = await this.stationService.getAllStations();

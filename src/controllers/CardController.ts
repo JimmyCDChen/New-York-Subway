@@ -2,11 +2,11 @@ import { Request } from 'express';
 import CardService from '../services/CardService';
 import { asyncWrapper } from '../utils/asyncWrapper';
 import { SuccessResponse } from '../utils/SuccessResponse';
-import { Service } from 'typedi';
+import Container, { Service } from 'typedi';
 
 @Service()
 export default class CardController {
-  constructor(public cardService: CardService) { }
+  private cardService = Container.get(CardService);
 
   refill = asyncWrapper(async (req: Request) => {
     const { number, amount } = req.body;

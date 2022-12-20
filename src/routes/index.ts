@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import CardRoutes from './CardRoutes';
-import Route from './routeAbstract';
+import Route from './RouteAbstract';
 import RouteRoutes from './RouteRoutes';
 import StationRoutes from './StationRoutes';
 import TrainLineRoutes from './TrainLineRoutes';

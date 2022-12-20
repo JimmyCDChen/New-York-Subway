@@ -1,7 +1,6 @@
 import Container, { Service } from 'typedi';
 import CardRepository from '../repositories/CardRepository';
 import { LoggerClient } from './LoggerClient';
-import StationService from './StationService';
 
 @Service()
 export default class CardService {
@@ -16,11 +15,11 @@ export default class CardService {
     } else {
       return this.cardRepository.updateCard(cardId, amount + card.amount)
     }
-  };
+  }
 
   getAllCards() {
     return this.cardRepository.getAllCards();
-  };
+  }
 
   async getCardById(id: string) {
     return this.cardRepository.findById(id);

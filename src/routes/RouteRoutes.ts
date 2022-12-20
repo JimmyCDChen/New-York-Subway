@@ -1,6 +1,6 @@
 import { Container } from 'typedi';
 import RouteController from '../controllers/RouteController';
-import Route from './routeAbstract';
+import Route from './RouteAbstract';
 
 class RouteRoutes extends Route {
   private routeController = Container.get(RouteController);

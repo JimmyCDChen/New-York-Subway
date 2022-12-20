@@ -12,7 +12,7 @@ export default class RouteService {
   async getShortestRoute(origin: string, destination: string) {
     const shortestRoute = await this.computeShortestPath(origin, destination);
     return { route: shortestRoute.map(it => it.name) };
-  };
+  }
 
   async getShortestRouteTrains(origin: string, destination: string) {
     const shortestRoute = await this.computeShortestPath(origin, destination);
@@ -27,7 +27,7 @@ export default class RouteService {
     }
 
     return { trains: allTrainsToTake };
-  };
+  }
 
   /* Could implement pre compute map of station-tain map to reduce compute time */
 
@@ -48,12 +48,12 @@ export default class RouteService {
       for (const station of stations) {
         station.nextStation.forEach((it) => {
           //edges.push({ from: station.name, to: it.station, weight: 1 });
-          edges.push({ from: station, to: stationsMap.get(it.station)!!, weight: 1 });
+          edges.push({ from: station, to: stationsMap.get(it.station)!, weight: 1 });
         });
       }
       // Adopt FloydWarshall algorithm to determine the shortest path between stations
       const graph = new FloydWarshall(edges, false);
-      return graph.getShortestPath(stationsMap.get(origin)!!, stationsMap.get(destination)!!);
+      return graph.getShortestPath(stationsMap.get(origin)!, stationsMap.get(destination)!);
     }
   }
 }

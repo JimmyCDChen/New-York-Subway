@@ -2,7 +2,7 @@ import { Container } from 'typedi';
 import StationController from '../controllers/StationController';
 import RequestValidator from '../middlewares/RequestValidator';
 import { StationCardRequest } from '../requests/StationCardRequest';
-import Route from './routeAbstract';
+import Route from './RouteAbstract';
 
 class StationRoutes extends Route {
   private stationController = Container.get(StationController);

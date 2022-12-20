@@ -2,7 +2,7 @@ import { Container } from 'typedi';
 import CardController from '../controllers/CardController';
 import RequestValidator from '../middlewares/RequestValidator';
 import { CardRequest } from '../requests/CardRequest';
-import Route from './routeAbstract';
+import Route from './RouteAbstract';
 
 class CardRoutes extends Route {
   private cardController = Container.get(CardController);

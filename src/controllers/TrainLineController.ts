@@ -2,11 +2,11 @@ import { Request } from 'express';
 import TrainLineService from '../services/TrainLineService';
 import { asyncWrapper } from '../utils/asyncWrapper';
 import { SuccessResponse } from '../utils/SuccessResponse';
-import { Service } from 'typedi';
+import Container, { Service } from 'typedi';
 
 @Service()
 export default class TrainLineController {
-  constructor(public trainLineService: TrainLineService) { }
+  private trainLineService = Container.get(TrainLineService);
 
   createTrainLines = asyncWrapper(async (req: Request) => {
     const { name, stations, fare } = req.body;

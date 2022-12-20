@@ -15,11 +15,6 @@ export const swaggerDocument = {
       url: 'https://www.apache.org/licenses/LICENSE-2.0.html',
     },
   },
-  tags: [
-    {
-      name: 'TrainLines',
-    },
-  ],
   paths: {
     '/auth/users': {
       get: getUsers,

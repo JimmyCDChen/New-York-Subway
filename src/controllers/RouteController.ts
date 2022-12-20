@@ -2,12 +2,12 @@ import { Request } from 'express';
 import RouteService from '../services/RouteService';
 import { asyncWrapper } from '../utils/asyncWrapper';
 import { SuccessResponse } from '../utils/SuccessResponse';
-import { Service } from 'typedi';
+import Container, { Service } from 'typedi';
 import { BadRequestError } from '../utils/ApiError';
 
 @Service()
 export default class RouteController {
-  constructor(public routeService: RouteService) {}
+  private routeService = Container.get(RouteService);
 
   getRoute = asyncWrapper(async (req: Request) => {
     const origin = req.query.origin as string;
@@ -19,7 +19,7 @@ export default class RouteController {
       throw new BadRequestError('destination should not be empty!', []);
     }
 
-    const response = await this.routeService.getRoute(origin, destination);
+    const response = await this.routeService.getShortestRoute(origin, destination);
     return new SuccessResponse(response);
   });
 }

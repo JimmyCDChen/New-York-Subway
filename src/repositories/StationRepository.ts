@@ -5,7 +5,7 @@ export default class StationRepository {
   async createStation(name: string, nextStations: Array<NextTrainStation>): Promise<Station> {
     const station = Station.build({ name: name, nextStation: nextStations });
     return await station.save();
-  };
+  }
 
   async upsertStationWithName(name: string, nextStations: Array<NextTrainStation>): Promise<any> {
     const station = await this.findByName(name);
@@ -18,13 +18,17 @@ export default class StationRepository {
       .concat(nextStations)
       .filter((thing, i, arr) => arr.findIndex((t) => t.train === thing.train && t.station === thing.station) === i);
     return await Station.upsert({ id: station.id, name: name, nextStation: newStations });
-  };
+  }
+
+  async findById(id: number): Promise<Station | null> {
+    return await Station.findByPk(id);
+  }
 
   async findByName(name: string): Promise<Station | null> {
     return await Station.findOne({ where: { name: name } });
-  };
+  }
 
   async getAllStations(): Promise<Station[]> {
     return await Station.findAll();
-  };
+  }
 }

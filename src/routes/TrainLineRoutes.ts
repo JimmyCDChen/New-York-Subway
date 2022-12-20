@@ -2,7 +2,7 @@ import RequestValidator from '../middlewares/RequestValidator';
 import { Container } from 'typedi';
 import TrainLineController from '../controllers/TrainLineController';
 import { TrainLineRequest } from '../requests/TrainLineRequest';
-import Route from './routeAbstract';
+import Route from './RouteAbstract';
 
 class TrainLineRoute extends Route {
   private trainLineController = Container.get(TrainLineController);

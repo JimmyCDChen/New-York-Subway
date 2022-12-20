@@ -5,7 +5,7 @@ import { Table, Model, Column, DataType } from 'sequelize-typescript';
   tableName: 'stations',
 })
 export class Station extends Model {
-  @Column({ type: DataType.INTEGER, autoIncrement: true, primaryKey: true, unique: true, field: 'Id' })
+  @Column({ type: DataType.INTEGER, autoIncrement: true, primaryKey: true, unique: true, field: 'id' })
   id!: number;
 
   @Column({ type: DataType.STRING(50), allowNull: false, field: 'name' })

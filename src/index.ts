@@ -47,3 +47,5 @@ process.on('SIGTERM', () => {
   if (dbClient) dbClient.close();
   if (server) server.close();
 });
+
+export default app;

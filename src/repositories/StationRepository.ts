@@ -20,6 +20,10 @@ export default class StationRepository {
     return await Station.upsert({ id: station.id, name: name, nextStation: newStations });
   };
 
+  async findById(id: number): Promise<Station | null> {
+    return await Station.findByPk(id);
+  };
+
   async findByName(name: string): Promise<Station | null> {
     return await Station.findOne({ where: { name: name } });
   };

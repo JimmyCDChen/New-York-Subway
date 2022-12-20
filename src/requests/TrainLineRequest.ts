@@ -6,4 +6,6 @@ export class TrainLineRequest {
 
   @IsNotEmpty()
   stations: Array<string>;
+
+  fare?: number;
 }

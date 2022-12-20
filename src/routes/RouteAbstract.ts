@@ -1,5 +1,3 @@
-// src/routes/route.ts
-
 import { Router } from 'express';
 
 abstract class Route {

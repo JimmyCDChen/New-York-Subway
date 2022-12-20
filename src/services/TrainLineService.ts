@@ -1,4 +1,5 @@
 import Container, { Service } from 'typedi';
+import { TrainLine } from '../models/TrainLine';
 import TrainLineRepository from '../repositories/TrainLineRepository';
 import { LoggerClient } from './LoggerClient';
 import StationService from './StationService';
@@ -9,8 +10,8 @@ export default class TrainLineService {
   private stationService = Container.get(StationService);
   private logger = Container.get(LoggerClient);
 
-  createTrain(trainName: string, stations: Array<string>) {
-    const result = this.trainLineRepository.createTrainLine(trainName, stations);
+  createTrain(trainName: string, stations: Array<string>, fare: number): Promise<TrainLine> {
+    const result = this.trainLineRepository.createTrainLine(trainName, stations, fare);
 
     // For each provided station, perform upsert
     stations.forEach((station: string) => {
@@ -21,9 +22,13 @@ export default class TrainLineService {
     return result;
   };
 
-  getAllTrainLines() {
+  getAllTrainLines(): Promise<TrainLine[]> {
     return this.trainLineRepository.getAllTrainLines();
   };
+
+  getTrainByName(name: string): Promise<TrainLine | null> {
+    return this.trainLineRepository.findByName(name);
+  }
 
   private getAdjacentStations = (name: string, stations: Array<string>) => {
     const stationIndex = stations.indexOf(name);

@@ -6,11 +6,11 @@ import { Service } from 'typedi';
 
 @Service()
 export default class TrainLineController {
-  constructor(public trainLineService: TrainLineService) {}
+  constructor(public trainLineService: TrainLineService) { }
 
   createTrainLines = asyncWrapper(async (req: Request) => {
-    const { name, stations } = req.body;
-    const response = await this.trainLineService.createTrain(name, stations);
+    const { name, stations, fare } = req.body;
+    const response = await this.trainLineService.createTrain(name, stations, fare);
     return new SuccessResponse(response);
   });
 

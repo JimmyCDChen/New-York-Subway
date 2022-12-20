@@ -1,5 +1,7 @@
 import { Container } from 'typedi';
 import StationController from '../controllers/StationController';
+import RequestValidator from '../middlewares/RequestValidator';
+import { StationCardRequest } from '../requests/StationCardRequest';
 import Route from './routeAbstract';
 
 class StationRoutes extends Route {
@@ -13,6 +15,8 @@ class StationRoutes extends Route {
 
   protected setRoutes() {
     this.router.get('/', this.stationController.getAllStations);
+    this.router.post(`/:station/enter`, RequestValidator.validate(StationCardRequest), this.stationController.enterStation)
+    this.router.post('/:station/exit', RequestValidator.validate(StationCardRequest), this.stationController.exitStation)
   }
 }
 

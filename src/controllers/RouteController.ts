@@ -7,7 +7,7 @@ import { BadRequestError } from '../utils/ApiError';
 
 @Service()
 export default class RouteController {
-  constructor(public routeService: RouteService) {}
+  constructor(public routeService: RouteService) { }
 
   getRoute = asyncWrapper(async (req: Request) => {
     const origin = req.query.origin as string;
@@ -19,7 +19,7 @@ export default class RouteController {
       throw new BadRequestError('destination should not be empty!', []);
     }
 
-    const response = await this.routeService.getRoute(origin, destination);
+    const response = await this.routeService.getShortestRoute(origin, destination);
     return new SuccessResponse(response);
   });
 }

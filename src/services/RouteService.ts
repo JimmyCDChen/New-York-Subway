@@ -47,7 +47,6 @@ export default class RouteService {
       // Construct Graph Edges
       for (const station of stations) {
         station.nextStation.forEach((it) => {
-          //edges.push({ from: station.name, to: it.station, weight: 1 });
           edges.push({ from: station, to: stationsMap.get(it.station)!, weight: 1 });
         });
       }

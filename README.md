@@ -8,7 +8,7 @@
 
 ## About The Project
 
-There are a lot of section that goes into creating a production grade NodeJS application. In this repository I tried to gather as much as possible. This is an ExpressJS application with the following features.
+There are a lot of sections that go into creating a production grade NodeJS application. In this repository I tried to gather as much as possible. This is an ExpressJS application with the following features.
 
 - Typescript all the way
 - EsLint, Prettier and Husky integration
@@ -39,11 +39,11 @@ The major technologies that were used to build this project are:
 
 ### Tech decision 
 
-Upon the project's base requirement (Typescript, Postgres and Docker) to run the application, I also decided to adopt and learn some new technologies during this project. In my background, I had not used NodeJS and Express as backend server, nor have I use Sequelize for ORM. In my search for tech decision, they came to be very popular technologies/frameworks and are very well supprted. Thus, I decided to give them a try. Although in a production setting, I would normal have raised a discussion through RFC proposal for team inputs before making a final tech choice. 
+Upon the project's base requirement (Typescript, Postgres and Docker) to run the application, I also decided to adopt and learn some new technologies during this project. In my background, I had not used NodeJS and Express as a backend server, nor have I used Sequelize for ORM. In my search for tech decisions, they came to be very popular technologies/frameworks and are very well supported. Thus, I decided to give them a try. Although in a production setting, I would normally have raised a discussion through the RFC proposal for team inputs before making a final tech choice. 
 
-For database ORM, I used Sequalize. Sequalize is a feature-rich ORM for modern Node.js and TypeScript, it supports PostgreSQL (with JSON and JSONB support), MySQL, MariaDB, SQLite, MS SQL Server, Snowflake, Oracle DB (v6), DB2 and DB2 for IBM i. Therefore, should we decided to switch to another database type, we could easily do so without much transition. 
+For database ORM, I used Sequelize. Sequelize is a feature-rich ORM for modern Node.js and TypeScript, it supports PostgreSQL (with JSON and JSONB support), MySQL, MariaDB, SQLite, MS SQL Server, Snowflake, Oracle DB (v6), DB2 and DB2 for IBM i. Therefore, should we decide to switch to another database type, we could easily do so without much transition. 
 
-Also, I decided to start of the project from a ExpressJS Boilerplate with Typescrip+Docker+Sequelize integration repo as I came across it from my research. You can find the reference repo in the [library source](#imported-library-sources) below. Yet, I had to modify a few parts so this project is better set up for testing. Much thanks and kudos to the repo author.
+Also, I decided to start off the project from an ExpressJS Boilerplate with Typescript+Docker+Sequelize integration repo as I came across it from my research. You can find the reference repo in the [library source](#imported-library-sources) below. Yet, I had to modify a few parts so this project is better set up for testing. Much thanks and kudos to the repo author.
 
 ## Getting Started
 
@@ -87,26 +87,26 @@ DB_PASSWORD = dbpassword;
 
 ## Key Assumptions
 
-This New York Subway project is yet production ready due to missing the following implementation in each of the below areas. However, due to the natural of a take home assignment with time constraint, I've decided to implement the MVP project at where it stands now. There are more recommeded work in these area to make it production ready. 
+This New York Subway project is yet production ready due to missing the following implementation in each of the below areas. However, due to the nature of a take home assignment with time constraint, I've decided to implement the MVP project at where it stands now. There is more recommended work in these area to make it production ready. 
 
 - Scaling
 - Security
 - Logging
 - Monitoring
-- More conprehensive tests in each structure area
+- More comprehensive tests in each structure area
 - API documentation with Swagger
 
 **At this moment, this project is designed for single application use.**
 
 ### Scaling
 
-For scaling, there are potential issue where we could face in the current design. This project has yet to implement work to handle many requests in scale and distributed system. 
+For scaling, there are potential issues where we could face in the current design. This project has yet to implement work to handle many requests in scale and distributed systems. 
 
-For example, in Challenge-2, one of the requirement is to calculate the correct remaining balance given a unique card. We have yet to implement procedure to ensure data correctness. One solution is to implement a mutex lock so cards have correct balance when used.
+For example, in Challenge-2, one of the requirements is to calculate the correct remaining balance given a unique card. We have yet to implement procedures to ensure data correctness. One solution is to implement a mutex lock so cards have correct balance when used.
 
 Recommended TODO: 
 - Implement mutex lock for data writing.
-- Implement precomputed train-station fare map for performance.
+- Implement precomputed train-station fare maps for performance.
 - Implement caching technology to improve performance.
 - Implement monitoring for critical components performance such as database, docker containers.
 
@@ -117,7 +117,7 @@ There are other infrastructure we could adopt to make this application truly sca
 In a client facing application, we should always implement some authentication for user validation. 
 
 Recommended TODO:
-- Implement API authentication for request client if needed.
+- Implement API authentication for request clients if needed.
 - Implement more validation on edge cases.
 - Check returned error message so no PII data is not revealed.
 
@@ -125,14 +125,14 @@ Recommended TODO:
 
 There are millions of potential New York City card transaction daily, and it is verbose to record every single transaction in logs
 
-Recommened TODO:
-- Record each API calls to tracing.
-- Record more timestamp for event and transaction for tracability.
-- Better error logging with more trace.
+Recommended TODO:
+- Record each API call to tracing.
+- Record more timestamps for events and transactions for traceability.
+- Better error logging with more traces.
 
 ### Testing
 
-The current test coverage is not high yet, but the key area where our business logic lives is covered. In a production environemnt, we should ideally have more tests for all structures as well, for normal use cases and also edge casese. 
+The current test coverage is not high yet, but the key area where our business logic lives is covered. In a production environment, we should ideally have more tests for all structures as well, for normal use cases and also edge cases. 
 
 Recommend TODO:
 - Add test for routing test.
@@ -141,11 +141,11 @@ Recommend TODO:
 - Add test for controller.
 - Add Integration tests for spinning up the project, and database tests.
 
-Also, this project is mainly set up with one environment in mind. Ideally a production ready platform should consist of sandbox, stage and production specific environment setting.
+Also, this project is mainly set up with one environment in mind. Ideally a production ready platform should consist of a sandbox, stage and production specific environment setting.
 
 ### API documentation
 
-Ideally we can use swagger for complete API doc set up, so users/developer can easily understand each of our API. For now, it's only short handed to the [API table](#api-endpoints) below. 
+Ideally we can use swagger for complete API doc set up, so users/developers can easily understand each of our API. For now, it's only short handed to the [API table](#api-endpoints) below. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -156,11 +156,11 @@ Then register that router in the `index.ts` file under the `/routes` folder.
 
 Then you will create a Controller under the `/controllers` directory.All business logics should go into there.
 
-Specific use cases should be handles by Service classes under the `/service` folder.
+Specific use cases should be handled by Service classes under the `/service` folder.
 
-All Database related things should go under `/repositories` folder.
+All Database related things should go under the `/repositories` folder.
 
-To create a new model for data base look into the `/models` folder.
+To create a new model for the database look into the `/models` folder.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -170,9 +170,9 @@ To create a new model for data base look into the `/models` folder.
 | GET | /train-line | | To retrieve all trains. |
 | POST | /train-line | fare=[number] | To create a new train line, and will also set up new stations. Fare represents the cost to take this train. |
 | GET | /station | | To retrieve all stations. |
-| POST | /station/[station]/enter | | To enter a station and this action will charge fare to the providing card, and returns the remaining balance on the card. |
-| POST | /station/[station]/exit | | To exit a station and this action will return the remaining balance on the card provided. |
-| POST | /route | origin=[string], destination=[string]| To give shortest path between origin and desination station |
+| POST | /station/[station]/enter | | To enter a station, this action will charge fare to the providing card, and returns the remaining balance on the card. |
+| POST | /station/[station]/exit | | To exit a station, this action will return the remaining balance on the card provided. |
+| POST | /route | origin=[string], destination=[string]| To give shortest path between origin and destination station |
 | GET | /card | | To retrieve all cards. |
 | POST | /card | | To create a new card or refill an existing card with the provided amount. |
 
@@ -180,7 +180,7 @@ To create a new model for data base look into the `/models` folder.
 
 ## Testing
 
-The recommened API testing tool is [Postman](https://www.postman.com/), and after installing Postman, you can import 
+The recommended API testing tool is [Postman](https://www.postman.com/), and after installing Postman, you can import 
 ```
 src/New_York_Subway.postman_colleciton.json
 ```
@@ -194,3 +194,6 @@ Credit to the following repositories on importing or getting started
 - [dranidis/floyd-warshall-shortest](https://github.com/dranidis/floyd-warshall-shortest) for finding the shortest path between stations.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+
+

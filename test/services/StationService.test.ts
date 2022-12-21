@@ -82,7 +82,6 @@ describe('StationService', () => {
             expect(cardServiceSpy).toHaveBeenCalledWith("123");
             expect(stationFindByNameSpy).toHaveBeenCalledWith("Spring");
             expect(createRideSpy).toHaveBeenCalledWith("123", 1, Action.EXIT);
-
         });
         it(`throw error when card is invalid`, async () => {
             jest.spyOn(CardService.prototype, "getCardById").mockResolvedValueOnce(null)

@@ -15,6 +15,7 @@ There are a lot of section that goes into creating a production grade NodeJS app
 - Docker
 - Sequelize integration
 - Logging
+- Swagger
 - Error handling in a central place
 - Request Validation
 - Dependency Injection
@@ -35,6 +36,14 @@ The major technologies that were used to build this project are:
 - [Jest](https://jestjs.io/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+### Tech decision 
+
+Upon the project's base requirement (Typescript, Postgres and Docker) to run the application, I also decided to adopt and learn some new technologies during this project. In my background, I had not used NodeJS and Express as backend server, nor have I use Sequelize for ORM. In my search for tech decision, they came to be very popular technologies/frameworks and are very well supprted. Thus, I decided to give them a try. Although in a production setting, I would normal have raised a discussion through RFC proposal for team inputs before making a final tech choice. 
+
+For database ORM, I used Sequalize. Sequalize is a feature-rich ORM for modern Node.js and TypeScript, it supports PostgreSQL (with JSON and JSONB support), MySQL, MariaDB, SQLite, MS SQL Server, Snowflake, Oracle DB (v6), DB2 and DB2 for IBM i. Therefore, should we decided to switch to another database type, we could easily do so without much transition. 
+
+Also, I decided to start of the project from a ExpressJS Boilerplate with Typescrip+Docker+Sequelize integration repo as I came across it from my research. You can find the reference repo in the [library source](#imported-library-sources) below. Yet, I had to modify a few parts so this project is better set up for testing. Much thanks and kudos to the repo author.
 
 ## Getting Started
 
@@ -75,6 +84,70 @@ DB_PASSWORD = dbpassword;
 ```
 
 3. A Database investigation tool named `Adminer` (You can inspect any kind of database from the browser) You can access it from `http://localhost:8080`
+
+## Key Assumptions
+
+This New York Subway project is yet production ready due to missing the following implementation in each of the below areas. However, due to the natural of a take home assignment with time constraint, I've decided to implement the MVP project at where it stands now. There are more recommeded work in these area to make it production ready. 
+
+- Scaling
+- Security
+- Logging
+- Monitoring
+- More conprehensive tests in each structure area
+- API documentation with Swagger
+
+**At this moment, this project is designed for single application use.**
+
+### Scaling
+
+For scaling, there are potential issue where we could face in the current design. This project has yet to implement work to handle many requests in scale and distributed system. 
+
+For example, in Challenge-2, one of the requirement is to calculate the correct remaining balance given a unique card. We have yet to implement procedure to ensure data correctness. One solution is to implement a mutex lock so cards have correct balance when used.
+
+Recommended TODO: 
+- Implement mutex lock for data writing.
+- Implement precomputed train-station fare map for performance.
+- Implement caching technology to improve performance.
+- Implement monitoring for critical components performance such as database, docker containers.
+
+There are other infrastructure we could adopt to make this application truly scalable such as `load balancer`, `cache service`, `cloud storage`, `event queue` etc.
+
+### Security 
+
+In a client facing application, we should always implement some authentication for user validation. 
+
+Recommended TODO:
+- Implement API authentication for request client if needed.
+- Implement more validation on edge cases.
+- Check returned error message so no PII data is not revealed.
+
+### Logging
+
+There are millions of potential New York City card transaction daily, and it is verbose to record every single transaction in logs
+
+Recommened TODO:
+- Record each API calls to tracing.
+- Record more timestamp for event and transaction for tracability.
+- Better error logging with more trace.
+
+### Testing
+
+The current test coverage is not high yet, but the key area where our business logic lives is covered. In a production environemnt, we should ideally have more tests for all structures as well, for normal use cases and also edge casese. 
+
+Recommend TODO:
+- Add test for routing test.
+- Add test for data operation repository.
+- Add test for model entity.
+- Add test for controller.
+- Add Integration tests for spinning up the project, and database tests.
+
+Also, this project is mainly set up with one environment in mind. Ideally a production ready platform should consist of sandbox, stage and production specific environment setting.
+
+### API documentation
+
+Ideally we can use swagger for complete API doc set up, so users/developer can easily understand each of our API. For now, it's only short handed to the [API table](#api-endpoints) below. 
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Project Structure
 
